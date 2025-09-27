@@ -1,7 +1,7 @@
 import React from 'react';
+import appPreviewImage from './assets/image.jpg';
+import howItWorksImage from './assets/image1.jpg';
 
-// --- Ícones SVG como componentes ---
-// O tamanho deles será controlado pelo CSS na tag <style>
 const MenuIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -30,7 +30,6 @@ const CloudUploadIcon = () => (
 export default function App() {
   return (
     <>
-      {/* Todo o estilo está contido aqui. Não precisa de arquivos externos. */}
       <style>{`
         :root {
           --primary-color: #6366F1; /* Roxo principal */
@@ -135,16 +134,21 @@ export default function App() {
           background-color: var(--primary-hover);
           transform: scale(1.05);
         }
+
+        .hero-image {
+            margin-top: 4rem;
+            max-width: 896px;
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
         .image-placeholder {
-          margin-top: 4rem;
           background-color: #E5E7EB;
           height: 24rem;
           width: 100%;
-          max-width: 896px;
-          margin-left: auto;
-          margin-right: auto;
           border-radius: var(--border-radius);
-          box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -189,7 +193,6 @@ export default function App() {
             justify-content: space-between;
             gap: 3rem;
         }
-        .how-it-works .image-placeholder { margin: 0; width: 50%; box-shadow: var(--shadow); }
         .steps { width: 50%; }
         .step { display: flex; align-items: flex-start; margin-bottom: 2rem; }
         .step-number {
@@ -208,10 +211,17 @@ export default function App() {
         }
         .step h3 { font-size: 1.25rem; font-weight: bold; margin: 0 0 0.25rem 0; }
         .step p { color: var(--text-light); margin: 0; }
+        
+        /* CSS para a segunda imagem */
+        .how-it-works-image {
+            width: 50%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
 
-        /* CTA Section */
         .cta-section {
-          background-color: #4338CA; /* Roxo mais escuro */
+          background-color: #4338CA;
           color: white;
           padding: 5rem 0;
           text-align: center;
@@ -219,17 +229,17 @@ export default function App() {
         .cta-section h2 { font-size: 2.25rem; font-weight: bold; margin-bottom: 1rem; }
         .cta-section p { color: #A5B4FC; max-width: 600px; margin: 0 auto 2rem auto; }
         .cta-section .cta-button {
-          background-color: var(--bg-white);
-          color: var(--primary-color);
+          background-color: var(--primary-color);
+          color: white;
         }
         .cta-section .cta-button:hover {
-          background-color: #E5E7EB;
+          background-color: var(--primary-hover);
         }
 
         /* Footer */
         .footer {
-          background-color: var(--text-dark);
-          color: white;
+          background-color: var(--text-blue-900);
+          color: black;
           padding: 2rem 0;
           text-align: center;
         }
@@ -242,8 +252,13 @@ export default function App() {
           .mobile-menu-button { display: block; }
           .hero h1 { font-size: 2.5rem; }
           .features-grid { grid-template-columns: 1fr; }
-          .how-it-works-content { flex-direction: column; }
-          .how-it-works .image-placeholder, .steps { width: 100%; }
+          .how-it-works-content { 
+            flex-direction: column; 
+            gap: 4rem;
+          }
+          .how-it-works-image, .steps { 
+            width: 100%; 
+          }
         }
       `}</style>
       
@@ -268,9 +283,13 @@ export default function App() {
               <h1>Organize sua vida acadêmica. <br/> <span className="highlight">Alcance o seu potencial máximo.</span></h1>
               <p>Quantum Tarefas é a ferramenta definitiva para estudantes que buscam excelência. Gerencie seus trabalhos, prazos e materiais em um só lugar.</p>
               <a href="#cta" className="cta-button">Crie sua conta gratuitamente</a>
-              <div className="image-placeholder">
-                <span>[Imagem ou GIF demonstrando a interface do aplicativo]</span>
-              </div>
+              
+              <img 
+                src={appPreviewImage} 
+                alt="Demonstração do aplicativo Quantum Tarefas em um celular" 
+                className="hero-image"
+              />
+
             </div>
           </section>
 
@@ -306,9 +325,11 @@ export default function App() {
                 <h2>Comece a usar em 3 passos simples</h2>
               </div>
               <div className="how-it-works-content">
-                  <div className="image-placeholder">
-                      <span>[Imagem ilustrativa dos passos ou do app]</span>
-                  </div>
+                  <img 
+                    src={howItWorksImage} 
+                    alt="Ilustração dos passos para usar o aplicativo" 
+                    className="how-it-works-image" 
+                  />
                   <div className="steps">
                       <div className="step">
                           <div className="step-number">1</div>
@@ -347,7 +368,7 @@ export default function App() {
 
         <footer className="footer">
           <div className="container">
-            <p>&copy; {new Date().getFullYear()} Quantum Tarefas. Todos os direitos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} Quantum Tarefas</p>
             <p className="subtitle">Um projeto para facilitar a vida universitária.</p>
           </div>
         </footer>
